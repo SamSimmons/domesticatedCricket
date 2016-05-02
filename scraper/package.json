@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "babel-node test.js",
-    "scrape": "babel-node index.js",
+    "scrape": "// babel-node //index.js",
     "rescrape": "babel-node gameScrape.js"
   },
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "cheerio": "^0.20.0",
     "lodash": "^4.11.1",
+    "ramda": "^0.21.0",
     "superagent": "^1.8.3"
   },
   "devDependencies": {
