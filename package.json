@@ -1,0 +1,19 @@
+{
+  "name": "domesticated-cricket",
+  "version": "0.0.1",
+  "description": "NZ hrv cup 2015 stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSimmons/domesticatedCricket.git"
+  },
+  "author": "Sam Simmons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamSimmons/domesticatedCricket/issues"
+  },
+  "homepage": "https://github.com/SamSimmons/domesticatedCricket#readme"
+}
