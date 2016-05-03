@@ -1,18 +1,18 @@
 const fs = require('fs')
 const R = require('ramda')
 
-function doesNotHaveBracket(str) {
+export function doesNotHaveBracket(str) {
   return (!str.includes('(')  )
 }
 
-function isNotEmptyString(str) {
+export function isNotWierdSpace(str) {
   return !(str === ' ')
 }
 
-function breakSeasonIntoChunks (season) {
+export function breakSeasonIntoChunks (season) {
   return season.map((game) => {
     let filteredBowling = game.bowling.filter((x) => {
-      return isNotEmptyString(x) && doesNotHaveBracket(x)
+      return isNotWierdSpace(x) && doesNotHaveBracket(x)
     })
     return ({
       link: game.link,
@@ -22,7 +22,7 @@ function breakSeasonIntoChunks (season) {
   })
 }
 
-function createBattingObject(chunk) {
+export function createBattingObject(chunk) {
   if (chunk.length === 8){
     return {
       batsman: chunk[0],
@@ -38,7 +38,7 @@ function createBattingObject(chunk) {
   return {}
 }
 
-function createBowlingObject(chunk) {
+export function createBowlingObject(chunk) {
   if (chunk.length === 6){
     return {
       bowler: chunk[0],
@@ -56,6 +56,8 @@ fs.readFile('season.json', (err, data) => {
   if (err) {console.error(err)}
   data = JSON.parse(data)
   let structuredData = breakSeasonIntoChunks(data)
-  console.log(structuredData[2].bowling)
+  // fs.writeFile('../data/2014.json', JSON.stringify(structuredData), (err) => {
+  //   if (err) {console.error(err)}
+  // })
 
 })

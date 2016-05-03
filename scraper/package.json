@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "babel-node test.js",
+    "test": "babel-node tests/scraper.js | tap-spec",
     "scrape": "// babel-node //index.js",
     "shape-data": "babel-node shapeData.js"
   },
@@ -14,7 +14,8 @@
     "cheerio": "^0.20.0",
     "lodash": "^4.11.1",
     "ramda": "^0.21.0",
-    "superagent": "^1.8.3"
+    "superagent": "^1.8.3",
+    "tape": "^4.5.1"
   },
   "devDependencies": {
     "babel-cli": "^6.7.7",
