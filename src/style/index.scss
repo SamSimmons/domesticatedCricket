@@ -1,0 +1,105 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Source+Serif+Pro");
+
+$red: #cc3a55;
+$darkerRed: #7f172b;
+$white: #fbfbfb;
+$grey: #242629;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 100%;
+  font-family: "Open Sans", sans-serif;
+  color: $white;
+}
+
+.header {
+  margin: 0;
+  background-color: $red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+
+  h1 {
+    font-family: 'Source Serif Pro', georgia;
+    font-size: 2.5em;
+    display: inline-block;
+    align-self: center;
+    font-weight: 700;
+    text-shadow: 0px 4px 4px $darkerRed;
+    text-align: center;
+    }
+
+  .flip {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    }
+
+  .logo{
+    display: inline-block;
+    height: 15vh;
+    width: 40vh;
+    background: url("images/cricket.png") no-repeat center;
+    background-size: contain;
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $white;
+
+  .header {
+    flex: 0 0 auto;
+  }
+
+  .main {
+    // margin-top: 5vh;
+    padding: 5vh;
+    border-top: 1px solid $grey + 100;
+    border-bottom: transparent;
+    flex: 1 0 auto;
+    min-height: 100vh;
+    color: $grey;
+    width: 80vw;
+    margin: 15vh auto;
+    h2 {
+      font-size: 1.4em;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    h3 {
+      margin-top: 0;
+      color: $grey + 100;
+      text-align: center;
+      font-size: 1em;
+      font-weight: 400;
+    }
+  }
+
+  .footer {
+    min-height: 5vh;
+    background-color: $red;
+    display: flex;
+    justify-content: space-around;
+    flex: 0 0 auto;
+
+    .foot-link {
+      padding: 10px;
+      margin: 5vh;
+      border: 1px solid $white;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  }
+}
