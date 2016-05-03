@@ -6,7 +6,7 @@
   "scripts": {
     "test": "babel-node test.js",
     "scrape": "// babel-node //index.js",
-    "rescrape": "babel-node gameScrape.js"
+    "shape-data": "babel-node shapeData.js"
   },
   "author": "",
   "license": "ISC",
