@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --hot --inline"
+    "dev": "webpack-dev-server --hot --inline",
+    "core": "babel-node src/js/core.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "url-loader": "^0.5.7"
   },
   "devDependencies": {
+    "babel-cli": "^6.8.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
   }

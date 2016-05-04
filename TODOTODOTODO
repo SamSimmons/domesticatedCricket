@@ -1,0 +1,1 @@
+FIX the scraper index file, it needs a recursive function so that when scraping it will add a team to the player stats

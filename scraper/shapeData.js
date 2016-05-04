@@ -15,8 +15,10 @@ export function breakSeasonIntoChunks (season) {
       return isNotWierdSpace(x) && doesNotHaveBracket(x)
     })
     return ({
+      home: game.home,
+      away: game.away,
       link: game.link,
-      batting: R.splitEvery(8, game.batting).map(createBattingObject),
+      batting: removeExtras(splitInnings(R.splitEvery(8, game.batting).map(createBattingObject))),
       bowling: R.splitEvery(6, filteredBowling).map(createBowlingObject)
     })
   })
@@ -52,12 +54,20 @@ export function createBowlingObject(chunk) {
   return {}
 }
 
+export function splitInnings(list) {
+  return R.splitWhen((x) => (x.batsman === 'Extras'), list)
+}
+
+export function removeExtras(multiArray) {
+  return multiArray.map(list => list.filter(x => x.batsman !== "Extras"))
+}
+
 fs.readFile('season.json', (err, data) => {
   if (err) {console.error(err)}
   data = JSON.parse(data)
   let structuredData = breakSeasonIntoChunks(data)
-  // fs.writeFile('../data/2014.json', JSON.stringify(structuredData), (err) => {
-  //   if (err) {console.error(err)}
-  // })
+  fs.writeFile('../data/2014.json', JSON.stringify(structuredData), (err) => {
+    if (err) {console.error(err)}
+  })
 
 })
