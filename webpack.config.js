@@ -25,8 +25,12 @@ module.exports = {
         loader: 'file-loader'
       },
       { test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|ico)$/,
-        loader: 'url?limit=10000' 
+        loader: 'url?limit=10000'
       },
+      {
+        test: /.json$/,
+        loader: "json-loader"
+      }
     ]
   },
   output: {

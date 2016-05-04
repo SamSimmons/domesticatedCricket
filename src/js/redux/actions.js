@@ -1,8 +1,6 @@
-export default const actions = {
-  team: function(data) {
-    return {
-      type: "TEAM",
-      data
-    }
+export function changeTeam(data) {
+  return {
+    type: "TEAM",
+    data
   }
 }
