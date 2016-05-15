@@ -16,8 +16,7 @@ export default class Chart extends Component {
       {game: 3, runs: 60}
     ]
     let nicol = this.plotData("RJ Nicol")
-    console.log(nicol)
-    this.createLineGraph(data)
+    this.createLineGraph(nicol)
   }
 // TODO use find here and find the player data and return it if it matches
   plotData(name) {
@@ -46,7 +45,7 @@ export default class Chart extends Component {
         .orient("left")
 
     let line = d3.svg.line()
-      .x(function(d) { return x(d.game); })
+      .x(function(d, i) { return x(i); })
       .y(function(d) { return y(d.runs); })
 
 
@@ -56,7 +55,7 @@ export default class Chart extends Component {
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-    x.domain(d3.extent(data, function(d) { return d.game; }))
+    x.domain(d3.extent(data, function(d, i) { return i; }))
     y.domain(d3.extent(data, function(d) { return d.runs; }))
 
     svg.append("g")
