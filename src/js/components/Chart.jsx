@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import d3 from 'd3'
+import R from 'ramda'
 
 export default class Chart extends Component {
   constructor(props) {
@@ -14,23 +15,18 @@ export default class Chart extends Component {
       {game: 2, runs: 80},
       {game: 3, runs: 60}
     ]
-    // this.plotData("RJ Nicol")
+    let nicol = this.plotData("RJ Nicol")
+    console.log(nicol)
     this.createLineGraph(data)
   }
 // TODO use find here and find the player data and return it if it matches
-  // plotData(name) {
-  //   // console.log(this.props.data)
-  //   this.props.data.map(game => {
-  //     runsgame.map(entry => {
-  //       if ( entry.batsman === name ){
-  //         return parseInt(entry.runs)
-  //       }
-  //     })
-  //   })
-  // }
+  plotData(name) {
+    return this.props.data.map(game => {
+      return game.filter(entry => (name === entry.batsman))
+    }).reduce((a,b) => a.concat(b))
+  }
 
   createLineGraph(data){
-    console.log('createLine')
     const margin = {top: 20, right: 20, bottom: 30, left: 50}
     const width = 960 - margin.left - margin.right
     const height = 500 - margin.top - margin.bottom
