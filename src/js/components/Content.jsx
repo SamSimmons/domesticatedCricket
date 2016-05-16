@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { changeTeam } from '../redux/actions.js'
-import { filterTeam } from '../core.js'
+import { changeTeam } from '../redux/actions'
+import { filterTeam } from '../core'
 
 import Chart from './Chart.jsx'
+import PlayerDropdown from './PlayerDropdown.jsx'
 
 class Content extends Component {
 
@@ -23,6 +24,7 @@ class Content extends Component {
           <option value="Otago">Otago Volts</option>
           <option value="Wellington">Wellington Firebirds</option>
         </select>
+        <PlayerDropdown />
         <Chart data={filterTeam(this.props.selectedTeam, this.props.season)}/>
       </div>
     )

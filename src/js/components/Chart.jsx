@@ -9,21 +9,17 @@ export default class Chart extends Component {
   }
 
   componentDidMount() {
-    let data = [
-      {game: 0, runs: 2},
-      {game: 1, runs: 15},
-      {game: 2, runs: 80},
-      {game: 3, runs: 60}
-    ]
-    let nicol = this.plotData("RJ Nicol")
-    this.createLineGraph(nicol)
+    this.createLineGraph(this.plotData(this.props.selecetedPlayer))
   }
+  
 // TODO use find here and find the player data and return it if it matches
   plotData(name) {
     return this.props.data.map(game => {
       return game.filter(entry => (name === entry.batsman))
     }).reduce((a,b) => a.concat(b))
   }
+
+
 
   createLineGraph(data){
     const margin = {top: 20, right: 20, bottom: 30, left: 50}
@@ -55,8 +51,8 @@ export default class Chart extends Component {
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-    x.domain(d3.extent(data, function(d, i) { return i; }))
-    y.domain(d3.extent(data, function(d) { return d.runs; }))
+    x.domain(d3.extent(data, (d, i) => i ))
+    y.domain(d3.extent(data, d => d.runs))
 
     svg.append("g")
     .attr("class", "x axis")

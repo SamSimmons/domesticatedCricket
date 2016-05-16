@@ -6,7 +6,8 @@ import reducer from './reducer'
 //create initial store
 let initialState = {
   season: data,
-  selectedTeam: "Auckland"
+  selectedTeam: "Auckland",
+  selecetedPlayer: ""
  }
 
 const store = createStore(reducer, initialState)
