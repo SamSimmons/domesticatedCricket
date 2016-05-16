@@ -31,7 +31,7 @@ class Content extends Component {
     const players = this.reduceForUniquePlayers(this.grabAllTeamGames(this.props.selectedTeam))
     return (
       <div className="player-dropdown">
-        <select onChange={this.handleChange.bind(this)}>
+        <select value={this.props.selectedPlayer} onChange={this.handleChange.bind(this)}>
           {players.map(name => {
             return <option key={name} value={name}>{name}</option>
           })}

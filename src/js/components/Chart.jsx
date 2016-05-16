@@ -3,23 +3,17 @@ import d3 from 'd3'
 import R from 'ramda'
 
 export default class Chart extends Component {
-  constructor(props) {
-    super(props)
-    // this.createLineGraph()
-  }
 
   componentDidMount() {
-    this.createLineGraph(this.plotData(this.props.selecetedPlayer))
+    this.createLineGraph(this.plotData(this.props.selectedPlayer))
   }
-  
+
 // TODO use find here and find the player data and return it if it matches
   plotData(name) {
     return this.props.data.map(game => {
       return game.filter(entry => (name === entry.batsman))
     }).reduce((a,b) => a.concat(b))
   }
-
-
 
   createLineGraph(data){
     const margin = {top: 20, right: 20, bottom: 30, left: 50}
@@ -55,25 +49,29 @@ export default class Chart extends Component {
     y.domain(d3.extent(data, d => d.runs))
 
     svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-  svg.append("g")
+    svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
 
-
-
-  svg.append("path")
+    svg.append("path")
       .datum(data)
       .attr("class", "line")
       .attr("d", line);
-
   }
 
+
+  updateGraph(){
+    d3.select('svg').remove()
+    this.createLineGraph(this.plotData(this.props.selectedPlayer))
+  }
+
+
   render() {
-    // console.log('props', this.props)
+    this.updateGraph()
     return (
       <div className="chart">
 

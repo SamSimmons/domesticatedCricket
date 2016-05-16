@@ -5,7 +5,7 @@ export default function reducer (state, action) {
     }
 
     case "CHANGE_PLAYER": {
-      return Object.assign({}, state, {selecetedPlayer: action.name})
+      return Object.assign({}, state, {selectedPlayer: action.name})
     }
 
     default: {

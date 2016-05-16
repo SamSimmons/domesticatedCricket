@@ -25,7 +25,7 @@ class Content extends Component {
           <option value="Wellington">Wellington Firebirds</option>
         </select>
         <PlayerDropdown />
-        <Chart data={filterTeam(this.props.selectedTeam, this.props.season)}/>
+        <Chart selectedPlayer={this.props.selectedPlayer} data={filterTeam(this.props.selectedTeam, this.props.season)}/>
       </div>
     )
   }
