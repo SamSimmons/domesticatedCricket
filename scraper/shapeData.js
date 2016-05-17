@@ -8,17 +8,28 @@ export function doesNotHaveBracket(str) {
 export function isNotWierdSpace(str) {
   return !(str === ' ')
 }
-
+//refactor this because the chaining got out of hand on line 17
 export function breakSeasonIntoChunks (season) {
   return season.map((game) => {
     let filteredBowling = game.bowling.filter((x) => {
       return isNotWierdSpace(x) && doesNotHaveBracket(x)
     })
+    let battingArray = removeExtras(splitInnings(R.splitEvery(8, game.batting).map(createBattingObject)))
+    let battingSecond = game.teams.filter(x => (x !== game.battingFirst))[0]
     return ({
-      home: game.home,
-      away: game.away,
+      home: game.teams[0],
+      away: game.teams[1],
       link: game.link,
-      batting: removeExtras(splitInnings(R.splitEvery(8, game.batting).map(createBattingObject))),
+      batting: {
+        teamOne: {
+          name: game.battingFirst,
+          data: battingArray[0],
+        },
+        teamTwo: {
+          name: battingSecond,
+          data: battingArray[1]
+        }
+      },
       bowling: R.splitEvery(6, filteredBowling).map(createBowlingObject)
     })
   })

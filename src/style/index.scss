@@ -5,6 +5,7 @@ $red: #cc3a55;
 $darkerRed: #7f172b;
 $white: #fbfbfb;
 $grey: #242629;
+$blue: #1C7599;
 
 * {
   box-sizing: border-box;
@@ -63,7 +64,6 @@ body {
   }
 
   .main {
-    // margin-top: 5vh;
     padding: 5vh;
     border-top: 1px solid $grey + 100;
     border-bottom: transparent;
@@ -72,18 +72,47 @@ body {
     color: $grey;
     width: 80vw;
     margin: 15vh auto;
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      // display: none;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
     h2 {
       font-size: 1.4em;
       font-weight: 600;
       text-align: center;
       margin-bottom: 0;
     }
+
     h3 {
       margin-top: 0;
       color: $grey + 100;
       text-align: center;
       font-size: 1em;
       font-weight: 400;
+    }
+
+    .chart{
+      display: flex;
+      justify-content: center;
+
+      svg {
+        background-color: bisque;
+        margin: 0 auto;
+      }
     }
   }
 

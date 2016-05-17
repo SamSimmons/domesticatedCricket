@@ -27,6 +27,13 @@ request.get(seasonURL)
 
 
           let $ = cheerio.load(res.text)
+          let teams = $('.teamLink').toArray().reduce((a, b) => a.concat(b.children), []).map(x => x.data)
+          let firstTeam = $('.th-innings-heading').toArray()
+          if(firstTeam.length > 0){
+            firstTeam = firstTeam[0].children[0].data.replace(/innings/i, "").trim()
+          } else {
+            firstTeam = null
+          }
           let bowlingTables = $('.bowling-table').find('td').toArray()
           let battingTables = $('.batting-table').find('td').toArray()
           let bowlingResults = []
@@ -34,6 +41,8 @@ request.get(seasonURL)
           grabData(bowlingTables, bowlingResults)
           grabData(battingTables, battingResults)
           let gameObj = {
+            teams: teams,
+            battingFirst: firstTeam,
             link: link,
             batting: battingResults,
             bowling: bowlingResults
@@ -44,6 +53,16 @@ request.get(seasonURL)
         })
     })
   })
+
+  function findInnerData(elt) {
+    if (!elt.children) {
+      return null
+    }
+    if (elt.name === 'td') {
+      return elt.children
+    }
+    findInnerData(elt.children)
+  }
 
   function saveData() {
     count ++
