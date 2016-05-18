@@ -5,10 +5,27 @@ function reduceForUniquePlayers(games){
   return R.compose(R.uniq, R.map(x => x.batsman), R.flatten)(games)
 }
 
-function plotData(name, data) {
+function getPlayersSeason(name, data) {
   return data.map(game => {
     return game.filter(entry => (name === entry.batsman))
   }).reduce((a,b) => a.concat(b))
+}
+
+function getRunningTotals(data) {
+  console.log(data)
+  return data.map(x => {
+    return {
+      'batsman': x.batsman,
+      'runs': parseInt(x.runs)
+    }
+  })
+  .reduce((totals, current, i) => {
+    totals.push({
+      'batsman': current.batsman,
+      'runs': totals[i - 1] ? current.runs + (totals[i - 1].runs) : current.runs
+    })
+    return totals
+  }, [])
 }
 
 
@@ -25,12 +42,6 @@ function createLineGraph(data, selectedPlayer){
           'class': 'selectedPlayer',
           'id': data[0].batsman
         });
-
-      svg.append("text")
-        .attr("x", width - 6)
-        .attr("y", height - 6)
-        .style("text-anchor", "end")
-        .text(selectedPlayer)
 
     } else {
       svg.append('path')
@@ -90,12 +101,13 @@ function createLineGraph(data, selectedPlayer){
       // .attr('transform', 'translate(' + width + ',0)')
       .call(yAxis);
 
-    players.forEach(player => drawLine(plotData(player, data)))
+    console.log(getRunningTotals(getPlayersSeason(selectedPlayer, data)))
+    players.forEach(player => drawLine(getRunningTotals(getPlayersSeason(player, data))))
 
 }
 
 export {
   createLineGraph,
   reduceForUniquePlayers,
-  plotData
+  getPlayersSeason
 }
