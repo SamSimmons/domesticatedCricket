@@ -14,8 +14,6 @@ class Content extends Component {
 
   chartClick(e) {
     if (e.target.id) {
-      console.log(e.target.id)
-      // console.log(this)
       this.props.dispatch(changePlayer(e.target.id))
     }
   }

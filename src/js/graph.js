@@ -20,7 +20,7 @@ function createLineGraph(data, selectedPlayer){
         .attr({
           d: line(data),
           'stroke': 'steelblue',
-          'stroke-width': 5,
+          'stroke-width': 7,
           'fill': 'none',
           'class': 'selectedPlayer',
           'id': data[0].batsman
@@ -37,7 +37,7 @@ function createLineGraph(data, selectedPlayer){
         .attr({
           d: line(data),
           'stroke': 'grey',
-          'stroke-width': 3,
+          'stroke-width': 5,
           'fill': 'none',
           'id': data[0].batsman
         });
@@ -52,9 +52,9 @@ function createLineGraph(data, selectedPlayer){
 
   const x = d3.scale.linear().range([0, width])
   const y = d3.scale.linear().range([height, 0])
-
-  x.domain([0, 15])
-  y.domain([0, 100])
+  const max = R.flatten(data).map(x => x.runs).reduce((x, y) => (parseInt(x) > parseInt(y)) ? x : y)
+  x.domain([0, data.length])
+  y.domain([0, max])
 
   const xAxis = d3.svg.axis()
     .scale(x)
@@ -66,9 +66,9 @@ function createLineGraph(data, selectedPlayer){
     .orient('left')
 
   const line = d3.svg.line()
-    .interpolate('linear')
-    .x((d, i) => (width / data.length) * i)
-    .y(d => height - d.runs)
+    .interpolate('monotone')
+    .x((d, i) => x(i))
+    .y(d => y(d.runs))
 
   const svg = d3.select('.chart').append('svg')
     .attr('width', width + margin.left + margin.right)
