@@ -23,8 +23,7 @@ class Content extends Component {
   }
 
   reduceForUniquePlayers(games){
-    const flattenAndGrabPlayers = R.compose(R.uniq, R.map(x => x.batsman), R.flatten)
-    return flattenAndGrabPlayers(games)
+    return R.compose(R.uniq, R.map(x => x.batsman), R.flatten)(games)
   }
 
   render() {

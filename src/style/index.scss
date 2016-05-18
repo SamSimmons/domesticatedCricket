@@ -109,6 +109,10 @@ body {
       display: flex;
       justify-content: center;
 
+      .selectedPlayer {
+        z-index: 5;
+      }
+
       svg {
         background-color: bisque;
         margin: 0 auto;
