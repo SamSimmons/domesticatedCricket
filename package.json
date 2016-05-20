@@ -4,7 +4,7 @@
   "description": "NZ hrv cup 2015 stats",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "babel-node src/tests/lineGraphTests.js | tap-spec",
     "dev": "webpack-dev-server --hot --inline",
     "core": "babel-node src/js/core.js"
   },
@@ -38,7 +38,13 @@
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
+    "tape": "^4.5.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }

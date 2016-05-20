@@ -41,16 +41,12 @@ function getRunningTotals(data) {
 
 function getRunsPer(data) {
   return data.map((current, i) => {
-    if (i > 0 ){
-      return {
-        'batsman': current.batsman,
-        'runs': R.mean(data.slice(0, i).map(x => x.runs))
-      }
+    return {
+      'batsman': current.batsman,
+      'runs': R.mean(data.slice(0, i + 1).map(x => x.runs))
     }
-    return null
-  }).filter(x => x !== null)
+  })
 }
-
 
 function createLineGraph(data, selectedPlayer, type = "totals"){
   function drawLine (data) {
@@ -128,5 +124,9 @@ function createLineGraph(data, selectedPlayer, type = "totals"){
 export {
   createLineGraph,
   reduceForUniquePlayers,
-  getPlayersSeason
+  getPlayersSeason,
+  findMaxSeasonRuns,
+  findMaxAverage,
+  getRunsPer,
+  getRunningTotals
 }
