@@ -42,18 +42,16 @@ function createScatterPlot(data, selectedPlayer){
   const height = 500 - margin.top - margin.bottom
 
 
-  const xMax = graphReadyData.reduce((a, b) => R.max(a, b.totalRuns), 0)
-  console.log('max', xMax)
-  console.log(graphReadyData)
-  const yMax = graphReadyData.reduce((a, b) => R.max(a, b.runsFromBoundaries), 0)
+  const xMax = graphReadyData.reduce((a, b) => R.max(a, b.totalRuns + 50), 0)
+  const yMax = graphReadyData.reduce((a, b) => R.max(a, b.runsFromBoundaries + 50), 0)
 
   let xValue = (d) => d.totalRuns
-  let xScale = d3.scale.linear().range([0, width])
+  let xScale = d3.scale.linear().range([0, width]).domain([0, xMax])
   let xMap = (d) => xScale(xValue(d))
   let xAxis = d3.svg.axis().scale(xScale).orient('bottom')
 
   let yValue = (d) => d.runsFromBoundaries
-  let yScale = d3.scale.linear().range([height, 0])
+  let yScale = d3.scale.linear().range([height, 0]).domain([0, yMax])
   let yMap = (d) => yScale(yValue(d))
   let yAxis = d3.svg.axis().scale(yScale).orient('left')
 
@@ -82,13 +80,12 @@ function createScatterPlot(data, selectedPlayer){
         .data(graphReadyData).enter()
         .append('circle')
           .attr({
-            'class': '',
-            'r': 5,
+            'class': (d) => (d.batsman === selectedPlayer) ? 'selectedPlayer' : '',
+            'r': 8,
             'cx': xMap,
             'cy': yMap,
             'id': (d) => d.batsman
           })
-
 }
 
 export {

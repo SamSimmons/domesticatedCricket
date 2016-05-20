@@ -1,5 +1,6 @@
 import d3 from 'd3'
 import R from 'ramda'
+import { createScatterPlot } from './scatterPlot'
 
 function reduceForUniquePlayers(games){
   return R.compose(R.uniq, R.map(x => x.batsman), R.flatten)(games)
@@ -49,6 +50,10 @@ function getRunsPer(data) {
 }
 
 function createLineGraph(data, selectedPlayer, type = "totals"){
+  if (type === 'scatter') {
+    createScatterPlot(data, selectedPlayer)
+    return
+  }
   function drawLine (data) {
       if (data.length < 1) {
         return

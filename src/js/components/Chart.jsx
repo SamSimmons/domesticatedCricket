@@ -27,8 +27,8 @@ export default class Chart extends Component {
   }
 
   handleScatter() {
-    d3.select('svg').remove()
-    createScatterPlot(this.props.data, this.props.selectedPlayer)
+    this.setState({graph: 'scatter'})
+    this.updateGraph()
   }
 
   updateGraph(){
