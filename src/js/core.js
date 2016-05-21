@@ -20,13 +20,12 @@ function getPlayersSeason(name, data) {
 }
 
 function gatherPlayerData(name, data) {
-  let returnr = data.map(game =>{
+  return data.map(game =>{
       let a = game.batting.teamOne.data.filter(playerGame => (name === playerGame.batsman))
       let b = game.batting.teamTwo.data.filter(playerGame => (name === playerGame.batsman))
       return a.concat(b)
   }).reduce((a,b) => a.concat(b), [])
-  console.log(returnr)
-  return returnr
+
 }
 export {
   filterTeam,
