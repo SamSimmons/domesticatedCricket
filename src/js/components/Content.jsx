@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { changeTeam } from '../redux/actions'
+import { changeTeam, changePlayer } from '../redux/actions'
 import { filterTeam } from '../core'
 
 import Chart from './Chart.jsx'
@@ -10,6 +10,12 @@ class Content extends Component {
 
   handleChange(event) {
     this.props.dispatch(changeTeam(event.target.value))
+  }
+
+  chartClick(e) {
+    if (e.target.id) {
+      this.props.dispatch(changePlayer(e.target.id))
+    }
   }
 
   render() {
@@ -25,7 +31,10 @@ class Content extends Component {
           <option value="Wellington">Wellington Firebirds</option>
         </select>
         <PlayerDropdown />
-        <Chart selectedPlayer={this.props.selectedPlayer} data={filterTeam(this.props.selectedTeam, this.props.season)}/>
+        <Chart selectedPlayer={this.props.selectedPlayer}
+               data={filterTeam(this.props.selectedTeam, this.props.season)}
+               handleClick={this.chartClick.bind(this)}
+               />
       </div>
     )
   }

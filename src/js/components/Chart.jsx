@@ -1,54 +1,52 @@
 import React, { Component } from 'react'
 import d3 from 'd3'
 import R from 'ramda'
+import { createLineGraph } from '../graph'
+import { createScatterPlot } from '../scatterPlot'
 
 export default class Chart extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      graph: 'totals'
+    }
+  }
 
   componentDidMount() {
-    this.createLineGraph(this.plotData(this.props.selectedPlayer))
+    createLineGraph(this.props.data, this.props.selectedPlayer)
   }
 
-// TODO use find here and find the player data and return it if it matches
-  plotData(name) {
-    return this.props.data.map(game => {
-      return game.filter(entry => (name === entry.batsman))
-    }).reduce((a,b) => a.concat(b))
+  handleRunsPer() {
+    this.setState({graph: "runsPer" })
+    this.updateGraph()
   }
 
-  createLineGraph(data){
-    console.log(data)
-    const svg = d3.select('.chart').append('svg')
-      .attr({
-        width: '800px',
-        height: '500px'
-      })
-
-    const mapLine = d3.svg.line()
-      .x((d, i) => (800 / data.length) * i)
-      .y(d => 500 - d.runs)
-      .interpolate('linear')
-
-    const vis = svg.append('path')
-      .attr({
-        d: mapLine(data),
-        "stroke": "steelblue",
-        "stroke-width": 2,
-        "fill": "none"
-      })
+  handleTotals() {
+    this.setState({graph: 'totals'})
+    this.updateGraph()
   }
 
+  handleScatter() {
+    this.setState({graph: 'scatter'})
+    this.updateGraph()
+  }
 
   updateGraph(){
     d3.select('svg').remove()
-    this.createLineGraph(this.plotData(this.props.selectedPlayer))
+    createLineGraph(this.props.data, this.props.selectedPlayer, this.state.graph)
   }
-
 
   render() {
     this.updateGraph()
     return (
-      <div className="chart">
-
+      <div className="chart-wrapper">
+        <button onClick={this.handleTotals.bind(this)}>Total runs in season</button>
+        <button onClick={this.handleRunsPer.bind(this)}>Runs per game</button>
+        <button onClick={this.handleScatter.bind(this)}>Runs scored from boundaries</button>
+        <h3>Highlighted Player:</h3>
+        <h1>{this.props.selectedPlayer}</h1>
+        <div className="chart" onClick={this.props.handleClick.bind(this)}>
+        </div>
       </div>
     )
   }

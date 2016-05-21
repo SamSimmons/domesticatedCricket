@@ -6,6 +6,8 @@ $darkerRed: #7f172b;
 $white: #fbfbfb;
 $grey: #242629;
 $blue: #1C7599;
+$mainFont: 'Open Sans';
+$titleFont: 'Source Serif Pro';
 
 * {
   box-sizing: border-box;
@@ -105,13 +107,32 @@ body {
       font-weight: 400;
     }
 
+    .chart-wrapper {
+      h1 {
+        font-size: 2em;
+        font-family: $titleFont;
+        text-align: center;
+      }
+    }
+
     .chart{
       display: flex;
       justify-content: center;
 
+      .selectedPlayer {
+        stroke: steelblue;
+      }
+
       svg {
         background-color: bisque;
         margin: 0 auto;
+
+        circle {
+          fill: grey;
+          &.selectedPlayer {
+            fill: steelblue;
+          }
+        }
       }
     }
   }
