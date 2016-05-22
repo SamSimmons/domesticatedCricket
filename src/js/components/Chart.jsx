@@ -3,6 +3,7 @@ import d3 from 'd3'
 import R from 'ramda'
 import { createLineGraph } from '../graph'
 import { createScatterPlot } from '../scatterPlot'
+import { createDonut } from '../donut'
 
 export default class Chart extends Component {
   constructor(props) {
@@ -31,9 +32,25 @@ export default class Chart extends Component {
     this.updateGraph()
   }
 
+  handleDonut() {
+    this.setState({graph: 'donut'})
+    this.updateGraph()
+  }
+
   updateGraph(){
     d3.select('svg').remove()
-    createLineGraph(this.props.data, this.props.selectedPlayer, this.state.graph)
+    switch (this.state.graph) {
+      case('scatter'): {
+        createScatterPlot(this.props.data, this.props.selectedPlayer)
+        break
+      }
+      case('donut'): {
+        createDonut(this.props.data, this.props.selectedPlayer, this.props.team)
+        break
+      }
+      default:
+        createLineGraph(this.props.data, this.props.selectedPlayer, this.state.graph)
+    }
   }
 
   render() {
@@ -43,6 +60,7 @@ export default class Chart extends Component {
         <button onClick={this.handleTotals.bind(this)}>Total runs in season</button>
         <button onClick={this.handleRunsPer.bind(this)}>Runs per game</button>
         <button onClick={this.handleScatter.bind(this)}>Runs scored from boundaries</button>
+        <button onClick={this.handleDonut.bind(this)}>Team Breakdown</button>
         <h3>Highlighted Player:</h3>
         <h1>{this.props.selectedPlayer}</h1>
         <div className="chart" onClick={this.props.handleClick.bind(this)}>

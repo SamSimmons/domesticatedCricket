@@ -6,6 +6,8 @@ import { filterTeam } from '../core'
 import Chart from './Chart.jsx'
 import PlayerDropdown from './PlayerDropdown.jsx'
 
+import Profile from './Profile.jsx'
+
 class Content extends Component {
 
   handleChange(event) {
@@ -19,7 +21,6 @@ class Content extends Component {
   }
 
   render() {
-    // console.log(this.props.season)
     return (
       <div>
         <select value={this.props.selectedTeam} onChange={this.handleChange.bind(this)}>
@@ -35,6 +36,7 @@ class Content extends Component {
                data={filterTeam(this.props.selectedTeam, this.props.season)}
                handleClick={this.chartClick.bind(this)}
                />
+             <Profile team={this.props.selectedTeam} player={this.props.selectedPlayer} data={this.props.season} />
       </div>
     )
   }
