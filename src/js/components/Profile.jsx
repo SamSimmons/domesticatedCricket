@@ -22,7 +22,7 @@ export default class Profile extends Component {
         <p>Sixes: {totals.sixes}</p>
         <p>Likelihood to hit a boundary: {(totals.fours + totals.sixes) / totals.balls}</p>
         <p>Percentage of runs from boundaries: {(totals.fours * 4) + (totals.sixes * 6) / totals.runs}</p>
-        <p>Percentage of team runs responsible for: </p>
+        <p>Percentage of team runs responsible for: {totals.runs / teamTotals.runs}</p>
       </div>
     )
   }
