@@ -1,3 +1,4 @@
+import R from 'ramda'
 
 function filterTeam(team, collection) {
   return collection.filter(game => game.home === team || game.away === team).map(game => {
@@ -36,7 +37,7 @@ function teamReducer (a,b) {
   }
 }
 
-function gatherTeamTotals(team, data) {
+function getTeamTotals(team, data) {
   return filterTeam(team, data).map(game => {
     if ( game.length === 0) {
       return null
@@ -45,7 +46,7 @@ function gatherTeamTotals(team, data) {
   }).filter(x => x !== null).reduce(teamReducer)
 }
 
-function reduceForTotals(season) {
+function getPlayerTotals(season) {
   return season.reduce((a, b) => {
     return {
       'balls': parseFloat(a.balls) + parseFloat(b.balls),
@@ -62,6 +63,6 @@ export {
   getPlayersSeason,
   reduceForUniquePlayers,
   gatherPlayerData,
-  reduceForTotals,
-  gatherTeamTotals
+  getPlayerTotals,
+  getTeamTotals
 }

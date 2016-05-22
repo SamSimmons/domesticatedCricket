@@ -45,7 +45,7 @@ export default class Chart extends Component {
         break
       }
       case('donut'): {
-        createDonut(this.props.data, this.props.selectedPlayer)
+        createDonut(this.props.data, this.props.selectedPlayer, this.props.team)
         break
       }
       default:
