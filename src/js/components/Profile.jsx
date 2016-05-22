@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import d3 from 'd3'
 import R from 'ramda'
 
-import { gatherPlayerData, reduceForTotals } from '../core'
+import { gatherPlayerData, reduceForTotals, filterTeam, gatherTeamTotals } from '../core'
 
 
 export default class Profile extends Component {
 
   render() {
+    let teamTotals = gatherTeamTotals(this.props.team, this.props.data)
     let season = gatherPlayerData(this.props.player, this.props.data)
     let totals = reduceForTotals(season)
     console.log(totals)
@@ -19,9 +20,9 @@ export default class Profile extends Component {
         <p>Balls Faced: {totals.balls}</p>
         <p>Fours: {totals.fours}</p>
         <p>Sixes: {totals.sixes}</p>
-        <p>Likelihood to hit a boundary</p>
-        <p>Percentage of runs from boundaries</p>
-        <p>Percentage of team runs responsible for</p>
+        <p>Likelihood to hit a boundary: {(totals.fours + totals.sixes) / totals.balls}</p>
+        <p>Percentage of runs from boundaries: {(totals.fours * 4) + (totals.sixes * 6) / totals.runs}</p>
+        <p>Percentage of team runs responsible for: </p>
       </div>
     )
   }

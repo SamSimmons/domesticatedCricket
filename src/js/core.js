@@ -27,6 +27,24 @@ function gatherPlayerData(name, data) {
   }).reduce((a,b) => a.concat(b), [])
 }
 
+function teamReducer (a,b) {
+  return {
+    'balls': parseFloat(a.balls) + parseFloat(b.balls),
+    'fours': parseFloat(a.fours) + parseFloat(b.fours),
+    'sixes': parseFloat(a.sixes) + parseFloat(b.sixes),
+    'runs': parseFloat(a.runs) + parseFloat(b.runs)
+  }
+}
+
+function gatherTeamTotals(team, data) {
+  return filterTeam(team, data).map(game => {
+    if ( game.length === 0) {
+      return null
+    }
+    return game.reduce(teamReducer)
+  }).filter(x => x !== null).reduce(teamReducer)
+}
+
 function reduceForTotals(season) {
   return season.reduce((a, b) => {
     return {
@@ -44,5 +62,6 @@ export {
   getPlayersSeason,
   reduceForUniquePlayers,
   gatherPlayerData,
-  reduceForTotals
+  reduceForTotals,
+  gatherTeamTotals
 }
