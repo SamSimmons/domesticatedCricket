@@ -20,7 +20,7 @@ function getPlayersSeason(name, data) {
   }).reduce((a,b) => a.concat(b))
 }
 
-function gatherPlayerData(name, data) {
+function getPlayerData(name, data) {
   return data.map(game =>{
       let a = game.batting.teamOne.data.filter(playerGame => (name === playerGame.batsman))
       let b = game.batting.teamTwo.data.filter(playerGame => (name === playerGame.batsman))
@@ -58,11 +58,15 @@ function getPlayerTotals(season) {
   })
 }
 
+function isOut() {
+
+}
+
 export {
   filterTeam,
   getPlayersSeason,
   reduceForUniquePlayers,
-  gatherPlayerData,
+  getPlayerData,
   getPlayerTotals,
   getTeamTotals
 }

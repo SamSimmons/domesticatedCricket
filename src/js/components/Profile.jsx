@@ -9,7 +9,7 @@ export default class Profile extends Component {
 
   render() {
     let teamTotals = getTeamTotals(this.props.team, this.props.data)
-    let season = gatherPlayerData(this.props.player, this.props.data)
+    let season = getPlayerData(this.props.player, this.props.data)
     let totals = getPlayerTotals(season)
     console.log(totals)
     return (
