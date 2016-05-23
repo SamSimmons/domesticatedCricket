@@ -61,8 +61,8 @@ export default class Chart extends Component {
         <button onClick={this.handleRunsPer.bind(this)}>Runs per game</button>
         <button onClick={this.handleScatter.bind(this)}>Runs scored from boundaries</button>
         <button onClick={this.handleDonut.bind(this)}>Team Breakdown</button>
-        <h3>Highlighted Player:</h3>
-        <h1>{this.props.selectedPlayer}</h1>
+        <h3>{this.state.graph === 'donut' ? 'Player who scored more than fifty runs:' : 'Highlighted Player:' }</h3>
+        <h1>{this.state.graph === 'donut' ? this.props.team : this.props.selectedPlayer}</h1>
         <div className="chart" onClick={this.props.handleClick.bind(this)}>
         </div>
       </div>

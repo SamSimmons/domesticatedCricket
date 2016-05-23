@@ -35,6 +35,7 @@ class Content extends Component {
         <Chart selectedPlayer={this.props.selectedPlayer}
                data={filterTeam(this.props.selectedTeam, this.props.season)}
                handleClick={this.chartClick.bind(this)}
+               team={this.props.selectedTeam}
                />
              <Profile team={this.props.selectedTeam} player={this.props.selectedPlayer} data={this.props.season} />
       </div>
