@@ -21,7 +21,6 @@ class Content extends Component {
   }
 
   render() {
-    console.log('content', this.props)
     return (
       <div>
         <select value={this.props.selectedTeam} onChange={this.handleChange.bind(this)}>

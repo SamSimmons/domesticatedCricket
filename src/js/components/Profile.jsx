@@ -2,16 +2,19 @@ import React, { Component } from 'react'
 import d3 from 'd3'
 import R from 'ramda'
 
-import { getPlayerData, getPlayerTotals, filterTeam, getTeamTotals } from '../core'
+import { getPlayerData, getPlayerTotals, filterTeam, getTeamTotals, getSeasonTotals, reduceSeasonToAverages, getSeasonAverage } from '../core'
 
 
 export default class Profile extends Component {
 
   render() {
-    let teamTotals = getTeamTotals(this.props.team, this.props.data)
-    let season = getPlayerData(this.props.player, this.props.data)
-    let totals = getPlayerTotals(season)
-    // console.log(totals)
+    const teamTotals = getTeamTotals(this.props.team, this.props.data)
+    const season = getPlayerData(this.props.player, this.props.data)
+    const totals = getPlayerTotals(season)
+    const seasonAverages = reduceSeasonToAverages(this.props.data)
+    const theAveragePlayer = getSeasonAverage(seasonAverages)
+    console.log(theAveragePlayer)
+    const allSeasonTotal = getSeasonTotals(this.props.data)
     return (
       <div className="profile">
         <h4>{this.props.player}</h4>
