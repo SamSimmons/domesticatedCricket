@@ -7,25 +7,32 @@ import { getPlayerData, getPlayerTotals, filterTeam, getTeamTotals, getSeasonTot
 
 export default class Profile extends Component {
 
+  roundTwoPlaces(num) {return num.toFixed(2)}
+
   render() {
     const teamTotals = getTeamTotals(this.props.team, this.props.data)
     const season = getPlayerData(this.props.player, this.props.data)
     const totals = getPlayerTotals(season)
     const seasonAverages = reduceSeasonToAverages(this.props.data)
     const theAveragePlayer = getSeasonAverage(seasonAverages)
-    console.log(theAveragePlayer)
     const allSeasonTotal = getSeasonTotals(this.props.data)
     return (
       <div className="profile">
-        <h4>{this.props.player}</h4>
-        <p>Season average: {totals.runs / totals.out}</p>
-        <p>Runs: {totals.runs}</p>
-        <p>Balls Faced: {totals.balls}</p>
-        <p>Fours: {totals.fours}</p>
-        <p>Sixes: {totals.sixes}</p>
-        <p>Likelihood to hit a boundary: {(totals.fours + totals.sixes) / totals.balls}</p>
-        <p>Percentage of runs from boundaries: {((totals.fours * 4) + (totals.sixes * 6)) / totals.runs}</p>
-        <p>Percentage of team runs responsible for: {totals.runs / teamTotals.runs}</p>
+        <div className="profile-card">
+          <div className="card-title">
+            <h4>{this.props.player}</h4>
+          </div>
+          <div className="card-body">
+            <p><span>2015/16 average:</span> {this.roundTwoPlaces(totals.runs / totals.out.toFixed())}</p>
+            <p><span>Total runs:</span> {totals.runs}</p>
+            <p><span>Balls Faced: </span>{totals.balls}</p>
+            <p><span>Fours: </span>{totals.fours}</p>
+            <p><span>Sixes: </span>{totals.sixes}</p>
+            <p><span>Boundary rate: </span>{this.roundTwoPlaces((((totals.fours + totals.sixes) / totals.balls) * 100))}</p>
+            <p><span>% of runs from boundaries: </span>{this.roundTwoPlaces((((totals.fours * 4) + (totals.sixes * 6)) / totals.runs) * 100)}</p>
+            <p><span>% of team runs: </span>{this.roundTwoPlaces((totals.runs / teamTotals.runs) * 100)}</p>
+          </div>
+        </div>
       </div>
     )
   }
