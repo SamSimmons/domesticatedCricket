@@ -60,6 +60,7 @@ function createDonut(data, selectedPlayer) {
     .attr('d', arc)
     .style('fill', (d, i) => color[i] )
     .attr('id', d => d.data.batsman)
+    .attr('class', 'slice')
 
   g.append('svg:text')
     .attr('transform', (d) => {

@@ -35,7 +35,10 @@ function reduceSeasonToAverages(data) {
   })
   const playerAverages = dataMappedToPlayers.map(x => {
     return x.map(fixOuts)
-  }).map(getPlayerTotals)
+  }).map(getPlayerTotals).map(x => {
+    let ave = x.out < 1 ? x.runs : x.runs / x.out
+    return Object.assign(x, { 'average': ave } )
+  })
   return playerAverages
 }
 
@@ -144,6 +147,26 @@ function getPlayerTotals(season) {
   })
 }
 
+function getMaxes(playerAverages) {
+  return playerAverages.reduce((a, b) => {
+    return {
+      'average': Math.max(a.average, b.average),
+      'fours': Math.max(a.fours, b.fours),
+      'balls': Math.max(a.balls, b.balls),
+      'sixes': Math.max(a.sixes, b.sixes),
+      'runs': Math.max(a.runs, b.runs),
+      'out': Math.max(a.out, b.out)
+    }
+  }, {
+    'average': 0,
+    'balls': 0,
+    'fours': 0,
+    'sixes': 0,
+    'runs': 0,
+    'out': 0
+  })
+}
+
 function fixOuts(playerGame) {
   playerGame.out = (playerGame.dismissal.trim() !== 'not out')
   return playerGame
@@ -158,5 +181,6 @@ export {
   getTeamTotals,
   getSeasonTotals,
   reduceSeasonToAverages,
-  getSeasonAverage
+  getSeasonAverage,
+  getMaxes
 }
