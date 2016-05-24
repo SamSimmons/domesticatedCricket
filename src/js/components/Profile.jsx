@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import d3 from 'd3'
 import R from 'ramda'
 import Compare from './Compare.jsx'
+import Colorchart from './Colorchart.jsx'
+import Pie from './Pie.jsx'
 
 import {
   getPlayerData,
@@ -34,6 +36,7 @@ export default class Profile extends Component {
             <h4>{this.props.player}</h4>
           </div>
           <div className="card-body">
+            <Colorchart />
             <div>
               <p><span>2015/16 average:</span> {this.roundTwoPlaces(totals.runs / totals.out.toFixed())}</p>
               <Compare
@@ -99,7 +102,7 @@ export default class Profile extends Component {
             </div>
             <div>
               <p><span>% of team runs: </span>{this.roundTwoPlaces((totals.runs / teamTotals.runs) * 100)}</p>
-
+              <Pie percent={this.roundTwoPlaces((totals.runs / teamTotals.runs) * 100)} />
             </div>
           </div>
         </div>

@@ -189,24 +189,25 @@ body {
 
     .label {
       fill: grey;
-      stroke: grey;
       font-family: $mainFont;
-      font-size: 1.25em;
+      font-size: 1em;
     }
 
     display: flex;
     flex-wrap: wrap;
 
     p {
-      padding: 1vw 0;
       margin: 1vw 0 0;
       text-align: right;
+      font-size: 1.25em;
+      font-weight: 700;
     }
 
     span {
       float: left;
       text-align: left;
       margin-right: 3vw;
+
     }
 
     .profile-card {
@@ -245,4 +246,40 @@ body {
       cursor: pointer;
     }
   }
+}
+
+.profile {
+
+  .color-chart {
+
+    .color-block {
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      margin-right: 5px;
+    }
+
+    p {
+      display: inline-block;
+      font-size: .75em;
+      font-weight: normal;
+    }
+
+    .green {
+      background-color: springgreen;
+    }
+
+    .blue {
+      background-color: steelblue;
+    }
+
+    .red {
+      background-color: tomato;
+    }
+  }
+}
+
+.pie {
+  font-size: 5em;
+  color: $red;
 }

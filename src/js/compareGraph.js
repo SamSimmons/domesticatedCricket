@@ -3,14 +3,19 @@ import R from 'ramda'
 
 function round (num) {return num.toFixed(2)}
 
+
+
 function createComparison(data, max, node) {
   const width = 300
   const height = 50
   const midHeight = 25
-  const color = [
-    'steelblue',
-    'tomato'
+  let color = [
+    'tomato',
+    'steelblue'
   ]
+  if (data[0] > data[1]) {
+    color[0] = 'springgreen'
+  }
 
   const x = d3.scale.linear().range([0, width])
   const y = d3.scale.linear().range([height, 0])
