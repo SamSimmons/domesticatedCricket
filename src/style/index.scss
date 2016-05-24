@@ -283,3 +283,41 @@ body {
   font-size: 5em;
   color: $red;
 }
+
+.player-content {
+  display: flex;
+
+  .profile {
+    max-width: 40%;
+  }
+
+  .search {
+    max-width: 60%;
+    flex-grow: 1;
+  }
+}
+
+
+.search-card {
+  margin: 2vw;
+  padding: 2vw;
+  background-color: $white;
+  box-shadow: 6px 6px 5px -6px grey;
+
+  .card-title {
+    display: flex;
+    justify-content: center;
+
+    input {
+      font-size: 1.25em;
+      padding: 5px;
+      border: none;
+      border-radius: 2px;
+      text-align: center;
+    }
+  }
+
+  .card-body {
+
+  }
+}

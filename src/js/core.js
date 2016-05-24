@@ -24,15 +24,10 @@ function fixSingleGames(arr) {
     'runs': parseFloat(game.runs),
     'out': game.out === true ? 1 : 0
   }
-
 }
 
 function reduceSeasonToAverages(data) {
-  const flatData = flattenAndRemoveEmptyGames(data)
-  const allPlayerNames = reduceForUniquePlayers(flatData)
-  const dataMappedToPlayers = allPlayerNames.map(playerName => {
-    return flatData.filter(gameObj => (playerName === gameObj.batsman))
-  })
+  const dataMappedToPlayers = mapDataToPlayers(data)
   const playerAverages = dataMappedToPlayers.map(x => {
     return x.map(fixOuts)
   }).map(getPlayerTotals).map(x => {
@@ -172,6 +167,15 @@ function fixOuts(playerGame) {
   return playerGame
 }
 
+function mapDataToPlayers(data) {
+  const flatData = flattenAndRemoveEmptyGames(data)
+  const allPlayerNames = reduceForUniquePlayers(flatData)
+  const dataMappedToPlayers = allPlayerNames.map(playerName => {
+    return flatData.filter(gameObj => (playerName === gameObj.batsman))
+  })
+  return dataMappedToPlayers
+}
+
 export {
   filterTeam,
   getPlayersSeason,
@@ -182,5 +186,6 @@ export {
   getSeasonTotals,
   reduceSeasonToAverages,
   getSeasonAverage,
-  getMaxes
+  getMaxes,
+  mapDataToPlayers
 }

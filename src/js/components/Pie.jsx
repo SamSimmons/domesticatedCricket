@@ -43,8 +43,17 @@ export default class Colorchart extends Component {
 
   }
 
-  render() {
+  updateGraph(){
+    d3.select('.pie svg').remove()
     this.createPie(this.props.percent)
+  }
+
+  componentDidMount() {
+    this.updateGraph()
+  }
+
+  render() {
+    this.updateGraph()
     return (
       <div className="pie">
 
