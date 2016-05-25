@@ -5,8 +5,9 @@ import { filterTeam } from '../core'
 
 import Chart from './Chart.jsx'
 import PlayerDropdown from './PlayerDropdown.jsx'
-
+import TeamDropdown from './TeamDropdown.jsx'
 import Profile from './Profile.jsx'
+import Search from './Search.jsx'
 
 class Content extends Component {
 
@@ -23,21 +24,24 @@ class Content extends Component {
   render() {
     return (
       <div>
-        <select value={this.props.selectedTeam} onChange={this.handleChange.bind(this)}>
-          <option value="Auckland">Auckland Aces</option>
-          <option value="Canterbury">Canterbury Kings</option>
-          <option value="Central Districts">Central Districts Stags</option>
-          <option value="Northern Districts">Northern Knights</option>
-          <option value="Otago">Otago Volts</option>
-          <option value="Wellington">Wellington Firebirds</option>
-        </select>
-        <PlayerDropdown />
-        <Chart selectedPlayer={this.props.selectedPlayer}
-               data={filterTeam(this.props.selectedTeam, this.props.season)}
-               handleClick={this.chartClick.bind(this)}
-               team={this.props.selectedTeam}
-               />
-             <Profile team={this.props.selectedTeam} player={this.props.selectedPlayer} data={this.props.season} />
+        <div className="chart-content">
+          <div className="dropdown-panel">
+            <TeamDropdown selectedTeam={this.props.selectedTeam} handleChange={this.handleChange.bind(this)}/>
+            <PlayerDropdown />
+          </div>
+          <Chart selectedPlayer={this.props.selectedPlayer}
+            data={filterTeam(this.props.selectedTeam, this.props.season)}
+            handleClick={this.chartClick.bind(this)}
+            team={this.props.selectedTeam}
+            />
+        </div>
+        <div class="player-content">
+          <Profile team={this.props.selectedTeam} player={this.props.selectedPlayer} data={this.props.season} />
+          <Search
+            data={this.props.season}
+            player={this.props.selectedPlayer}
+            />
+        </div>
       </div>
     )
   }

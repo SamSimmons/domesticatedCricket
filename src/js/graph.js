@@ -55,7 +55,7 @@ function createLineGraph(data, selectedPlayer, type = "totals"){
       if (data.length < 1) {
         return
       }
-      let possibleSelected = (selectedPlayer === data[0].batsman) ? 'selectedPlayer' : ''
+      let possibleSelected = (selectedPlayer === data[0].batsman) ? 'selectedPlayer' : 'playerLine'
       svg.append('path')
         .attr({
           d: line(data),

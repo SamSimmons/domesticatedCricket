@@ -119,7 +119,7 @@ body {
     }
 
     .chart-wrapper {
-      padding: 3vw;
+      padding: 0 3vw 3vw;
       background-color: $white;
       box-shadow: 6px 6px 5px -6px grey;
 
@@ -127,20 +127,26 @@ body {
         font-size: 2em;
         font-family: $titleFont;
         text-align: center;
+        margin-bottom: 2vw;
       }
     }
 
     .chart{
       display: flex;
       justify-content: center;
+      background-color: bisque;
 
       .selectedPlayer {
         stroke: steelblue;
       }
 
+      .playerLine, .slice{
+        cursor: pointer;
+      }
+
       svg {
         background-color: bisque;
-        margin: 0 auto;
+        margin: 3vh auto 0;
 
         circle {
           fill: grey;
@@ -152,21 +158,56 @@ body {
     }
   }
 
+  button:focus {
+    outline:none;
+  }
+
+  .button-panel {
+    display: flex;
+    justify-content: space-between;
+    background-color: $red;
+    color: $white;
+    box-shadow: 0 6px 5px -6px grey;
+
+    button {
+      background-color: $red;
+      color: $white;
+      border: none;
+      font-family: $mainFont;
+      cursor: pointer;
+      padding: 2vw;
+      flex-grow: 1;
+    }
+
+    .active {
+      background-color: darken($red, 5%);
+      color: darken($white, 5%);
+    }
+  }
+
   .profile {
+
+    .label {
+      fill: grey;
+      font-family: $mainFont;
+      font-size: 1em;
+    }
+
     display: flex;
     flex-wrap: wrap;
 
     p {
-      padding: 1vw 0;
-      margin: 1vw 0;
+      margin: 1vw 0 0;
       text-align: right;
-      border-bottom: 1px solid lighten(grey, 10%);
+      font-size: 1.25em;
+      font-weight: 700;
     }
 
     span {
       float: left;
       text-align: left;
       margin-right: 3vw;
+
     }
 
     .profile-card {
@@ -184,6 +225,7 @@ body {
 
       .card-body {
         margin: 2vw 2vw;
+        font-size: .8em;
 
       }
     }
@@ -202,6 +244,128 @@ body {
       border: 1px solid $white;
       border-radius: 3px;
       cursor: pointer;
+    }
+  }
+}
+
+
+.search-title-block{
+
+  .color-block {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+  }
+
+  p {
+    display: inline-block;
+    font-size: .75em;
+    font-weight: normal;
+    margin-right: 20px;
+  }
+}
+
+.profile {
+
+  .color-chart {
+
+    .color-block {
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      margin-right: 5px;
+    }
+
+    p {
+      display: inline-block;
+      font-size: .75em;
+      font-weight: normal;
+    }
+
+    .green {
+      background-color: springgreen;
+    }
+
+    .blue {
+      background-color: steelblue;
+    }
+
+    .red {
+      background-color: tomato;
+    }
+  }
+}
+
+.pie {
+  font-size: 5em;
+  color: $red;
+}
+
+.player-content {
+  display: flex;
+
+  .profile {
+    max-width: 40%;
+  }
+
+  .search {
+    max-width: 60%;
+    flex-grow: 1;
+  }
+}
+
+.dropdown-panel{
+  margin-top: 2vw;
+  display: flex;
+  justify-content: center;
+  background-color: $white;
+
+  select {
+    margin: 2vw;
+    font-size: 1.1em;
+    background-color: $white;
+  }
+}
+
+
+.search-card {
+  margin: 2vw;
+  padding: 2vw;
+  background-color: $white;
+  box-shadow: 6px 6px 5px -6px grey;
+
+  .card-title {
+    display: flex;
+    justify-content: center;
+
+    input {
+      font-size: 1.25em;
+      padding: 5px;
+      border: none;
+      border-radius: 2px;
+      text-align: center;
+    }
+  }
+
+  .results-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .search-result {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px -3px grey;
+
+    &:hover {
+      background-color: $red;
+      color: $white;
+      box-shadow: 6px 6px 5px -6px  $darkerRed;
     }
   }
 }
