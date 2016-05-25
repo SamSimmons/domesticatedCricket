@@ -35,7 +35,10 @@ class Content extends Component {
         </div>
         <div class="player-content">
           <Profile team={this.props.selectedTeam} player={this.props.selectedPlayer} data={this.props.season} />
-          <Search data={this.props.season} />
+          <Search
+            data={this.props.season}
+            player={this.props.selectedPlayer}
+            />
         </div>
       </div>
     )

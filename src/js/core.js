@@ -179,6 +179,7 @@ function mapDataToPlayers(data) {
 export {
   filterTeam,
   getPlayersSeason,
+  flattenAndRemoveEmptyGames,
   reduceForUniquePlayers,
   getPlayerData,
   getPlayerTotals,
