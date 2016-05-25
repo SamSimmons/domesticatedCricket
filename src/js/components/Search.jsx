@@ -68,9 +68,9 @@ export default class Search extends Component {
 
   render() {
     const allPlayersSeason = mapDataToPlayers(this.props.data)
-    let content = this.state.searching ? this.state.possibleMatches.map(name => {
-      return <p onClick={this.handleSelection.bind(this)} key={name.fullName}>{name.fullName}</p>
-    }) : <p>Enter a last name to compare players</p>
+    let content = this.state.searching ? <div className="results-container"> {this.state.possibleMatches.map(name => {
+      return <div className="search-result" onClick={this.handleSelection.bind(this)} key={name.fullName}>{name.fullName}</div>
+    })}</div> : <p>Enter a last name to compare players</p>
     return (
       <div className="search">
         <div className="search-card">

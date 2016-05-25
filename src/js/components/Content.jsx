@@ -25,8 +25,10 @@ class Content extends Component {
     return (
       <div>
         <div className="chart-content">
-          <TeamDropdown selectedTeam={this.props.selectedTeam} handleChange={this.handleChange.bind(this)}/>
-          <PlayerDropdown />
+          <div className="dropdown-panel">
+            <TeamDropdown selectedTeam={this.props.selectedTeam} handleChange={this.handleChange.bind(this)}/>
+            <PlayerDropdown />
+          </div>
           <Chart selectedPlayer={this.props.selectedPlayer}
             data={filterTeam(this.props.selectedTeam, this.props.season)}
             handleClick={this.chartClick.bind(this)}
