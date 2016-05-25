@@ -60,6 +60,7 @@ export default class Search extends Component {
   }
 
   addGraph(clickedName) {
+    d3.selectAll('.child').remove()
     let playerA = getPlayerTotals(getPlayerData(this.props.player, this.props.data))
     let playerB = getPlayerTotals(getPlayerData(clickedName, this.props.data))
     createBar([playerA, playerB])

@@ -248,6 +248,24 @@ body {
   }
 }
 
+
+.search-title-block{
+
+  .color-block {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+  }
+
+  p {
+    display: inline-block;
+    font-size: .75em;
+    font-weight: normal;
+    margin-right: 20px;
+  }
+}
+
 .profile {
 
   .color-chart {
