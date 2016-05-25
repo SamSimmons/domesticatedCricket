@@ -34,9 +34,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "/public/",
-    filename: "client.min.js",
-    publicPath: "/public/"
+    filename: "./client.min.js"
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
